@@ -1,8 +1,11 @@
 // Efek suara sintetis via Web Audio API — tanpa file eksternal
 let ctx;
-let muted = false;
+let muted = localStorage.getItem("sim_muted") === "1";
 
-export const setMuted = (v) => { muted = v; };
+export const setMuted = (v) => {
+  muted = v;
+  localStorage.setItem("sim_muted", v ? "1" : "0");
+};
 export const isMuted = () => muted;
 
 const ac = () => {
