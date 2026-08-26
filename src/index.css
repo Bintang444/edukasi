@@ -2,5 +2,11 @@ body {
   margin: 0;
   font-family: system-ui, sans-serif;
   background: #fafafa;
+  color: #111827; /* warna teks dasar — halaman gelap menimpanya sendiri */
   min-height: 100vh;
+}
+
+/* Cegah browser memaksa mode gelap yang merusak warna halaman terang */
+html {
+  color-scheme: light;
 }
