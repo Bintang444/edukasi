@@ -41,7 +41,9 @@ const SpinWheel = () => {
       clearInterval(tickRef.current);
       playFanfare();
       navigator.vibrate?.([80, 60, 120]);
-      navigate("/result", { state: { prize: PRIZES[winnerIndex].label } });
+      const spinCount = Number(sessionStorage.getItem("sim_spin") || 0) + 1;
+      sessionStorage.setItem("sim_spin", String(spinCount));
+      navigate("/result", { state: { prize: PRIZES[winnerIndex].label, spin: spinCount } });
     }, 4900);
   };
 

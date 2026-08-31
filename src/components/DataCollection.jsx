@@ -61,8 +61,8 @@ const SECTIONS = [
     key: "sebar",
     icon: "📣",
     title: "Link yang Disebarkan",
-    desc: "Syarat 'bagikan ke 3 grup' untuk membuka klaim.",
-    risk: "Inilah mesin penyebar penipuan. Setiap korban membawa puluhan target baru — biasanya teman sekelas dan keluarga sendiri.",
+    desc: "Syarat 'bagikan ke 3 grup' dan godaan 'spin ulang hadiah lebih besar'.",
+    risk: "Inilah mesin penyebar & penjerat penipuan. Setiap korban membawa puluhan target baru (teman & keluarga), dan godaan 'spin lagi' membuat korban terus berulang — makin banyak data & waktunya terbuang.",
     color: "#0891b2",
     bg: "#ecfeff",
   },
@@ -152,7 +152,7 @@ const DataCollection = () => {
     registrasi: dataList.filter((d) => d.tipe === "registrasi"),
     kredensial: dataList.filter((d) => ["login", "otp", "pin-ewallet", "bank"].includes(d.tipe)),
     uang: dataList.filter((d) => d.tipe === "pembayaran"),
-    sebar: dataList.filter((d) => d.tipe === "share"),
+    sebar: dataList.filter((d) => d.tipe === "share" || d.tipe === "spin-ulang"),
   };
   const totalUang = grouped.uang.reduce((s, d) => s + (d.jumlah || 0), 0);
   const totalRisiko =
@@ -390,10 +390,18 @@ const DataCollection = () => {
                         </>
                       )}
 
-                      {sec.key === "sebar" && (
+                      {sec.key === "sebar" && item.tipe !== "spin-ulang" && (
                         <>
                           <Row icon="📤" label="Disebar ke" value={item.target} />
                           <Row icon="🐟" label="Umpannya" value={item.prize} />
+                        </>
+                      )}
+
+                      {sec.key === "sebar" && item.tipe === "spin-ulang" && (
+                        <>
+                          <Row icon="🎰" label="" value="Memilih 'spin ulang' demi hadiah lebih besar" />
+                          <Row icon="🔁" label="Putaran ke" value={item.spin} />
+                          <Row icon="🎯" label="Godaan" value={`Jackpot ${item.multiplier} — ${item.prize}`} />
                         </>
                       )}
 
